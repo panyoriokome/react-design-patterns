@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["src/*"]
-    }
+    },
+    "types": ["@emotion/react/types/css-prop"],
   },
   "files": ["src/types/twin.d.ts"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
