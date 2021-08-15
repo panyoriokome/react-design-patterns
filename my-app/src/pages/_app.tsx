@@ -1,7 +1,7 @@
-import Head from 'next/head'
-import { GlobalStyles, css } from 'twin.macro'
-import { Global } from '@emotion/react'
-import { AppProps } from 'next/app'
+import Head from "next/head";
+import { GlobalStyles, css } from "twin.macro";
+import { Global } from "@emotion/react";
+import { AppProps } from "next/app";
 
 const App = ({ Component, pageProps }: AppProps) => (
   <>
@@ -15,7 +15,7 @@ const App = ({ Component, pageProps }: AppProps) => (
     <Global styles={globalStyles} />
     <Component {...pageProps} />
   </>
-)
+);
 
 // globalStyleの適用
 const globalStyles = css`
@@ -30,6 +30,6 @@ const globalStyles = css`
   * {
     box-sizing: border-box;
   }
-`
+`;
 
-export default App
+export default App;
