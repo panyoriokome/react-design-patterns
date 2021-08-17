@@ -14,5 +14,10 @@ module.exports = {
         },
       },
     },
-  ]
+  ],
+  babel: async (options) => ({
+    ...options,
+    // any extra options you want to set
+    "presets": ["@emotion/babel-preset-css-prop"]
+  }),
 }
