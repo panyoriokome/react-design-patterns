@@ -15,31 +15,56 @@ const ColorPattern = {
 type ColorPattern = typeof ColorPattern[keyof typeof ColorPattern];
 
 export type TypographyProps = {
+  /**
+  * 表示する文字
+  */
   text: string;
+  /**
+  * 太字で表示するか
+  */
   bold?: boolean;
+  /**
+  * 文字の大きさを指定
+  */
   size?: SizePattern;
+  /**
+  * 
+  */
   color?: ColorPattern;
+  /**
+  * twもしくはcssで適用するスタイルを指定
+  */
   styles?: TwStyle | SerializedStyles;
 };
 
+/**
+ * 汎用的に使用できるテキストのComponent
+ *
+ * @component
+ * @example
+ * const text = 'サンプルテキスト'
+ * return (
+ *   <Typography text={text} />
+ * )
+ */
 const Typography = ({ text, bold, size, color, styles }: TypographyProps) => {
   // sizeのPropsによって適用するスタイルを変更する
   const sizeStyle =
     size === SizePattern.h1
       ? h1
       : size === SizePattern.h2
-      ? h2
-      : size === SizePattern.h3
-      ? h3
-      : "";
+        ? h2
+        : size === SizePattern.h3
+          ? h3
+          : "";
 
   // colorのPropsによって適用するスタイルを変更する
   const colorStyle =
     color === ColorPattern.primary
       ? primary
       : color === ColorPattern.secondary
-      ? secondary
-      : "";
+        ? secondary
+        : "";
 
   return (
     <div

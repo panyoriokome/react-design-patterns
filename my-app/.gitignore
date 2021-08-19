@@ -40,3 +40,5 @@ yarn-error.log*
 .env
 .env.build
 
+# storybook-a11y-report output
+__report__/
