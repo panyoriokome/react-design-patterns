@@ -7,7 +7,7 @@ import * as yup from "yup";
 const schema = yup.object().shape({
   username: yup.string().required(),
   firstName: yup.string().required(),
-  age: yup.number().positive().integer().required(),
+  // age: yup.number().positive().integer().required(),
 });
 
 const defaultValues = {
@@ -17,22 +17,21 @@ const defaultValues = {
 export const Form = () => {
   const methods = useForm({
     resolver: yupResolver(schema),
-    mode: "onBlur",
+    // mode: "onBlur",
     defaultValues: defaultValues
     // 入力欄から離れた（onBlur）タイミングでバリデーションが行われる
   })
-  const {
-    formState: { errors },
-    register,
-    handleSubmit
-  } = useForm({
-    resolver: yupResolver(schema)
-  })
-  const onSubmit = data => console.log(data);
+  const { handleSubmit, formState: { errors } } = methods
+  // const {
+  //   formState: { errors },
+  //   register,
+  // } = useForm({
+  //   resolver: yupResolver(schema)
+  // })
   return (
     <div css={tw`w-full max-w-xs mx-auto`}>
       <FormProvider {...methods}>
-        <form css={tw`bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4`} onSubmit={handleSubmit(onSubmit)}>
+        <form css={tw`bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4`} onSubmit={handleSubmit(data => console.log(data))}>
           <div css={tw`mb-4`}>
             <label css={tw`block text-gray-700 text-sm font-bold mb-2`}>
               Username
@@ -52,20 +51,20 @@ export const Form = () => {
             />
             <p>{errors.username?.message}</p>
           </div>
-          <div css={tw`mb-4`}>
+          {/* <div css={tw`mb-4`}>
             <label css={tw`block text-gray-700 text-sm font-bold mb-2`}>
               FirstName
             </label>
-            <input {...register("firstName")} css={tw`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none`}/>
+            <input {...register("firstName")} css={tw`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none`} />
             <p>{errors.firstName?.message}</p>
           </div>
           <div css={tw`mb-4`}>
             <label css={tw`block text-gray-700 text-sm font-bold mb-2`}>
               Age
             </label>
-            <input {...register("age")} css={tw`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none`}/>
+            <input {...register("age")} css={tw`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none`} />
             <p>{errors.age?.message}</p>
-          </div>
+          </div> */}
           <button type='submit' css={tw`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-sm`}>Submit</button>
         </form>
       </FormProvider>
