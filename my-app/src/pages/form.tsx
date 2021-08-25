@@ -1,33 +1,28 @@
-import tw, { css } from "twin.macro";
+import tw from "twin.macro";
 import { TextField } from '~/components/atoms/TextField'
-import { Controller, useForm, FormProvider, useFormContext } from 'react-hook-form'
+import { Controller, useForm, FormProvider } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
 const schema = yup.object().shape({
   username: yup.string().required(),
   firstName: yup.string().required(),
-  // age: yup.number().positive().integer().required(),
+  age: yup.number().positive().integer().required(),
 });
 
-const defaultValues = {
-  username: '初期値'
-}
+// const defaultValues = {
+//   username: '初期値',
+//   firstName: null,
+//   age: null
+// }
 
 export const Form = () => {
   const methods = useForm({
     resolver: yupResolver(schema),
-    // mode: "onBlur",
-    defaultValues: defaultValues
-    // 入力欄から離れた（onBlur）タイミングでバリデーションが行われる
+    mode: "onBlur",
+    // defaultValues: defaultValues
   })
-  const { handleSubmit, formState: { errors } } = methods
-  // const {
-  //   formState: { errors },
-  //   register,
-  // } = useForm({
-  //   resolver: yupResolver(schema)
-  // })
+  const { handleSubmit, formState: { errors }, register } = methods
   return (
     <div css={tw`w-full max-w-xs mx-auto`}>
       <FormProvider {...methods}>
@@ -38,7 +33,6 @@ export const Form = () => {
             </label>
             <Controller
               name="username"
-              defaultValue="初期値"
               render={({
                 field: { onChange, onBlur, value },
               }) => (
@@ -51,7 +45,7 @@ export const Form = () => {
             />
             <p>{errors.username?.message}</p>
           </div>
-          {/* <div css={tw`mb-4`}>
+          <div css={tw`mb-4`}>
             <label css={tw`block text-gray-700 text-sm font-bold mb-2`}>
               FirstName
             </label>
@@ -64,7 +58,7 @@ export const Form = () => {
             </label>
             <input {...register("age")} css={tw`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none`} />
             <p>{errors.age?.message}</p>
-          </div> */}
+          </div>
           <button type='submit' css={tw`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-sm`}>Submit</button>
         </form>
       </FormProvider>
