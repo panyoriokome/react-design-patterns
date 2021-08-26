@@ -7,10 +7,11 @@ import * as yup from "yup";
 yup.setLocale({
   mixed: {
     default: '入力エラーです',
-    required: '必須入力項目です',
+    required: ({ path }) => `${path}: 必須入力項目です`,
     oneOf: ({ values }) => `次の値のいずれかでなければなりません: ${values}`,
     notOneOf: ({ values }) => `次の値のいずれかであってはなりません: ${values}`,
-    notType: '形式が違います',
+    notType: ({ path, value, type }) => `${path}: 形式が違います ${type}`,
+
   },
   string: {
     length: ({ length }) => `${length}文字入力して下さい`,
@@ -48,7 +49,7 @@ yup.setLocale({
 });
 
 const schema = yup.object().shape({
-  username: yup.string().required(),
+  username: yup.string().required().label("サンプル"),
   firstName: yup.string().required(),
   age: yup.number().positive().integer().required(),
 });
