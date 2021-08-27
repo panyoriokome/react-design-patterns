@@ -2,6 +2,13 @@ import Head from "next/head";
 import { GlobalStyles, css } from "twin.macro";
 import { Global } from "@emotion/react";
 import { AppProps } from "next/app";
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from 'recoil';
 
 const App = ({ Component, pageProps }: AppProps) => (
   <>
@@ -11,9 +18,11 @@ const App = ({ Component, pageProps }: AppProps) => (
       </title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <GlobalStyles />
-    <Global styles={globalStyles} />
-    <Component {...pageProps} />
+    <RecoilRoot>
+      <GlobalStyles />
+      <Global styles={globalStyles} />
+      <Component {...pageProps} />
+    </RecoilRoot>
   </>
 );
 
