@@ -3,6 +3,7 @@ import { TextField } from '~/components/atoms/TextField'
 import { Controller, useForm, FormProvider } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
+import { motion } from "framer-motion"
 
 yup.setLocale({
   mixed: {
@@ -108,6 +109,15 @@ export const Form = () => {
           <button type='submit' css={tw`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-sm`}>Submit</button>
         </form>
       </FormProvider>
+      <motion.div
+        css={tw` bg-black w-12 h-12`}
+        animate={{
+          scale: [1, 2, 2, 1, 1],
+          rotate: [0, 0, 270, 270, 0],
+          borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+        }}
+        transition={{ duration: 0.5 }}
+      />
     </div>
   );
 };
