@@ -4,11 +4,8 @@ import { Global } from "@emotion/react";
 import { AppProps } from "next/app";
 import {
   RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
 } from 'recoil';
+import ToastList from '~/components/ToastList'
 
 const App = ({ Component, pageProps }: AppProps) => (
   <>
@@ -22,6 +19,7 @@ const App = ({ Component, pageProps }: AppProps) => (
       <GlobalStyles />
       <Global styles={globalStyles} />
       <Component {...pageProps} />
+      <ToastList />
     </RecoilRoot>
   </>
 );

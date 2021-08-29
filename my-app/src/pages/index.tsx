@@ -1,13 +1,18 @@
 import { css } from "twin.macro";
 import Typography from "~/components/atoms/Typography";
-import Toast from "~/components/Toast";
+import {useToast} from '~/recoil/toast'
 
 export const Home = () => {
+  const {addToast} = useToast()
+  const onClick = () => {
+    addToast('Test Message')
+  }
+
   return (
     <div css={container}>
       <Typography text="デフォルトのテキスト" />
       <Typography text="Boldのテキスト" bold />
-      <Toast />
+      <button onClick={onClick}>Toastを追加</button>
     </div>
   );
 };
