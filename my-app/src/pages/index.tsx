@@ -1,11 +1,13 @@
 import { css } from "twin.macro";
 import Typography from "~/components/atoms/Typography";
+import Toast from "~/components/Toast";
 
 export const Home = () => {
   return (
     <div css={container}>
       <Typography text="デフォルトのテキスト" />
       <Typography text="Boldのテキスト" bold />
+      <Toast />
     </div>
   );
 };
